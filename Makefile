@@ -18,7 +18,7 @@ NAME = push_swap.a
 executable = push_swap
 LIBFT_DIR = Libft
 
-SRCS = main.c 
+SRCS = main.c swap.c push.c reverse_rotate.c rotate.c analyst.c analyst_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

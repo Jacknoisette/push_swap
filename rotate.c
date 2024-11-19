@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-void	rotate(int *list_a, int *list_b, int mod, int intlen)
+void	rotate(t_bint *list_a, t_bint *list_b, int mod, int intlen)
 {
 	int i;
-	int temp;
+	t_bint temp;
 
 	if (mod == 1 || mod == 3)
 	{
@@ -41,16 +41,3 @@ void	rotate(int *list_a, int *list_b, int mod, int intlen)
 	}
 }
 
-int main(void)
-{
-	int	list_a[] = {4,6,1,3,9,2};
-	int	list_b[] = {0,0,0,0,0,0};
-	int	i;
-
-	rotate(list_a, list_b, 3, 6);
-	i = 0;
-	while (i++ < 6)
-		printf("%i  %i\n", list_a[i - 1], list_b[i - 1]);
-	printf("a  b \n");
-	return (0);
-}
