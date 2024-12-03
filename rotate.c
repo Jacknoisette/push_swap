@@ -12,32 +12,38 @@
 
 #include "push_swap.h"
 
-void	rotate(t_bint *list_a, t_bint *list_b, int mod, int intlen)
+//rotate 1 <- 2
+void	rotate(t_stack *stack, int maxlen)
 {
-	int i;
-	t_bint temp;
+	int	i;
+	int temp;
+	int	dif;
 
-	if (mod == 1 || mod == 3)
+	if (stack->len < 2)
+		return ;
+	dif = maxlen - stack->len;
+	i = 0;
+	temp = stack->list[dif];
+	while (i < maxlen)
 	{
-		i = 0;
-		temp = list_a[0];
-        while (i < intlen - 1)
-        {
-            list_a[i] = list_a[i + 1];
-			i++;
-        }
-        list_a[intlen - 1] = temp;
+		stack->list[i] = stack->list[i + 1];
+		i++;
 	}
-	if (mod == 2 || mod == 3)
-	{
-		i = 0;
-		temp = list_b[0];
-        while (i < intlen - 1)
-        {
-            list_b[i] = list_b[i + 1];
-			i++;
-        }
-        list_b[intlen - 1] = temp;
-	}
+	stack->list[maxlen - 1] = temp;
 }
 
+void	rrotate(t_stack *stack_1, t_stack *stack_2, int maxlen)
+{
+	rotate(stack_1, maxlen);
+	rotate(stack_2, maxlen);
+}
+
+
+
+
+
+// void	rrotate(t_stack *stack_1, t_stack *stack_2, int maxlen)
+// {
+// 	int	i;
+
+// }

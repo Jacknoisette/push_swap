@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   analyst_utils.c                                    :+:      :+:    :+:   */
+/*   triplet.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdhallen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 16:52:14 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/11/18 16:52:17 by jdhallen         ###   ########.fr       */
+/*   Created: 2024/12/02 17:23:31 by jdhallen          #+#    #+#             */
+/*   Updated: 2024/12/02 17:23:34 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_sort(int *stack, int len)
-{
-	int	i;
-	int j;
-
-	i = 0;
-	j = 1;
-	while (j < len)
-	{
-		if (stack[i] >= stack[j])
-			return (0);
-		j++;
-		i++;
-	}
-	return (1);
-}
+// int	triplet(t_stack *list, int len)
+// {
+// 	if (!check_sort(list, 3))
+// 	{
+// 		if (!check_sort(list, 2))
+// 		{
+// 			reverse_rotate(list, len);
+// 			//swap(list);
+// 			return (1);
+// 		}
+// 		ft_printf("test\n");
+// 		swap(list);
+// 		rotate(list, len);
+// 		return (1);
+// 	}
+// 	return (1);
+// }

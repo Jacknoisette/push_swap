@@ -18,21 +18,19 @@
 # include "Libft/get_next_line/get_next_line.h"
 # include <limits.h>
 
-typedef struct s_bint
+typedef struct	s_stack
 {
-    int value;
-    int null_check;
-}   t_bint;
+	int	*list;
+	int	len;
+}	t_stack;
 
-t_bint	*build_bint(int *stack, int intlen, int exist);
-void	reverse_rotate(t_bint *list_a, t_bint *list_b, int mod, int intlen);
-void	rotate(t_bint *list_a, t_bint *list_b, int mod, int intlen);
-void	push(t_bint *list_a, t_bint *list_b, int mod, int intlen);
-void	swap(t_bint *list_a, t_bint *list_b, int mod);
-int	    *build_int(int *stack, t_bint **bint_list, int intlen);
-int	    push_swap(int *stack);
-int	    intlen(int *stack);
+void	push(t_stack *stack_1, t_stack *stack_2, int maxlen);
+void	rrotate(t_stack *stack_1, t_stack *stack_2, int maxlen);
+void	rotate(t_stack *stack, int maxlen);
+void	rreverse_rotate(t_stack *stack_1, t_stack *stack_2, int maxlen);
+void	reverse_rotate(t_stack *stack, int maxlen);
+void 	swap(t_stack *stack, int maxlen);
+int	push_swap(int *stack, int len);
+int	check_sort(int *stack, int len);
 
 #endif
-
-

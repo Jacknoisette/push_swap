@@ -12,25 +12,43 @@
 
 #include "push_swap.h"
 
-
-// int	commander(t_bint **list_a, t_bint **list_b, int intlen)
-// {
-
-// }
-
-
-int	push_swap(int *stack)
+void	printf_all(t_stack stack_a, t_stack stack_b, int len)
 {
-	t_bint *list_a;
-    t_bint *list_b;
-	int numb;
-	int len;
-	int	ind;
+	int	i;
 
-	len = intlen(stack);
-	list_a = build_bint(stack, len, 0);
-	list_b = build_bint(stack, len, 1);
-   
-	stack = build_int(stack, list_a, len);
-    return (numb);
+	i = len - stack_a.len;
+	ft_printf("stack_a\n");
+	while (i < len)
+		ft_printf("%i, ", stack_a.list[i++]);
+	ft_printf("\nstack_b\n");
+	i = len - stack_b.len;
+	while (i < len)
+		ft_printf("%i, ", stack_b.list[i++]);
+	ft_printf("\n");
 }
+
+int	push_swap(int *stack, int len)
+{
+	t_stack stack_a;
+	t_stack stack_b;
+
+	stack_a.list = stack;
+	stack_b.list = malloc((len) * sizeof(int));
+	stack_a.len = len;
+	stack_b.len = 0;
+	ft_printf("origin\n");
+	printf_all(stack_a, stack_b, len);
+	ft_printf("\npb * 2\n");
+	push(&stack_b, &stack_a, len);
+	push(&stack_b, &stack_a, len);
+	printf_all(stack_a, stack_b, len);
+	ft_printf("\nrr\n");
+	rreverse_rotate(&stack_a, &stack_b, len);
+	printf_all(stack_a, stack_b, len);
+	ft_printf("\nsa\n");
+	swap(&stack_a, len);
+	printf_all(stack_a, stack_b, len);
+	free(stack_b.list);
+    return (0);
+}
+
