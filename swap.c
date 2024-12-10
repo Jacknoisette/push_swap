@@ -13,15 +13,26 @@
 #include "push_swap.h"
 
 //swap 1 <-> 2
-void swap(t_stack *stack, int maxlen)
+int swap(t_stack *stack, int maxlen, int print)
 {
     int temp;
     int dif;
 
-    if (stack->len < 2)
-		return ;
+    if (print)
+		ft_printf("s%c\n", stack->letter);
+	if (stack->len < 2)
+		return (1);
     dif = maxlen - stack->len;
     temp = stack->list[dif];
     stack->list[dif] = stack->list[dif + 1];
     stack->list[dif + 1] = temp;
+	return (1);
+}
+
+int sswap(t_stack *stack_1, t_stack *stack_2, int maxlen)
+{
+	ft_printf("ss\n");
+	swap(stack_1, maxlen, 0);
+	swap(stack_2, maxlen, 0);
+	return (1);
 }

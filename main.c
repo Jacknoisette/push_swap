@@ -57,7 +57,7 @@ int	stackcreation(int *stack, const int argc, const char **argv)
  		i++;
 	}
 	if (check_double(stack, argc) == 1)
-		return (ft_printf("Error\nSame value"), 1);
+		return (ft_printf("Error\nSame value\n"), 1);
 	return (stack[i - 1] = '\0', 0);
 }
 
@@ -78,5 +78,6 @@ int main(int argc, char **argv)
 	i = 0;
 	while (i < argc - 1)
 		ft_printf("%i, ", stack[i++]);
+	ft_printf("\n");
 	return (free(stack), 1);
 }

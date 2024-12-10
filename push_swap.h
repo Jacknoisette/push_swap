@@ -20,17 +20,24 @@
 
 typedef struct	s_stack
 {
-	int	*list;
-	int	len;
+	char	letter;
+	int		*list;
+	int		len;
 }	t_stack;
 
-void	push(t_stack *stack_1, t_stack *stack_2, int maxlen);
-void	rrotate(t_stack *stack_1, t_stack *stack_2, int maxlen);
-void	rotate(t_stack *stack, int maxlen);
-void	rreverse_rotate(t_stack *stack_1, t_stack *stack_2, int maxlen);
-void	reverse_rotate(t_stack *stack, int maxlen);
-void 	swap(t_stack *stack, int maxlen);
+int	push(t_stack *stack_1, t_stack *stack_2, int maxlen);
+int	rrotate(t_stack *stack_1, t_stack *stack_2, int maxlen);
+int	rotate(t_stack *stack, int maxlen, int print);
+int	rreverse_rotate(t_stack *stack_1, t_stack *stack_2, int maxlen);
+int	reverse_rotate(t_stack *stack, int maxlen, int print);
+int sswap(t_stack *stack_1, t_stack *stack_2, int maxlen);
+int swap(t_stack *stack, int maxlen, int print);
+int quintuplet(t_stack *stack_a, t_stack *b, int len, int count);
+int	triplet(t_stack *stack, int len, int count);
 int	push_swap(int *stack, int len);
-int	check_sort(int *stack, int len);
+int	check_sort(t_stack *stack, int len, int start);
+int	check_little(t_stack *stack, int len, int start);
+int	check_seclittle(t_stack *stack, int len, int start);
+int	check_big(t_stack *stack, int len, int start);
 
 #endif

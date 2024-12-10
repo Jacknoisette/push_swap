@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	printf_all(t_stack stack_a, t_stack stack_b, int len)
+void	printf_all(t_stack stack_a, t_stack stack_b, int len, int count)
 {
 	int	i;
 
@@ -25,30 +25,28 @@ void	printf_all(t_stack stack_a, t_stack stack_b, int len)
 	while (i < len)
 		ft_printf("%i, ", stack_b.list[i++]);
 	ft_printf("\n");
+	ft_printf("count : %i\n", count);
 }
 
 int	push_swap(int *stack, int len)
 {
 	t_stack stack_a;
 	t_stack stack_b;
-
+	int	count;
+	
+	count = 0;
+	stack_a.letter = 'a';
+	stack_b.letter = 'b';
 	stack_a.list = stack;
 	stack_b.list = malloc((len) * sizeof(int));
 	stack_a.len = len;
 	stack_b.len = 0;
 	ft_printf("origin\n");
-	printf_all(stack_a, stack_b, len);
-	ft_printf("\npb * 2\n");
-	push(&stack_b, &stack_a, len);
-	push(&stack_b, &stack_a, len);
-	printf_all(stack_a, stack_b, len);
-	ft_printf("\nrr\n");
-	rreverse_rotate(&stack_a, &stack_b, len);
-	printf_all(stack_a, stack_b, len);
-	ft_printf("\nsa\n");
-	swap(&stack_a, len);
-	printf_all(stack_a, stack_b, len);
+	printf_all(stack_a, stack_b, len, count);
+	count += push(&stack_b, &stack_a, len);
+	count += triplet(&stack_a, len, 0);
+	printf_all(stack_a, stack_b, len, count);
 	free(stack_b.list);
-    return (0);
+    return (count);
 }
 

@@ -13,14 +13,16 @@
 #include "push_swap.h"
 
 //rotate 1 <- 2
-void	rotate(t_stack *stack, int maxlen)
+int	rotate(t_stack *stack, int maxlen, int print)
 {
 	int	i;
 	int temp;
 	int	dif;
 
+	if (print)
+		ft_printf("r%c\n", stack->letter);
 	if (stack->len < 2)
-		return ;
+		return (1);
 	dif = maxlen - stack->len;
 	i = 0;
 	temp = stack->list[dif];
@@ -30,12 +32,15 @@ void	rotate(t_stack *stack, int maxlen)
 		i++;
 	}
 	stack->list[maxlen - 1] = temp;
+	return (1);
 }
 
-void	rrotate(t_stack *stack_1, t_stack *stack_2, int maxlen)
+int	rrotate(t_stack *stack_1, t_stack *stack_2, int maxlen)
 {
-	rotate(stack_1, maxlen);
-	rotate(stack_2, maxlen);
+	ft_printf("rr\n");
+	rotate(stack_1, maxlen, 0);
+	rotate(stack_2, maxlen, 0);
+	return (1);
 }
 
 

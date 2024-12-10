@@ -12,19 +12,72 @@
 
 #include "push_swap.h"
 
-int	check_sort(int *stack, int len)
+int	check_sort(t_stack *stack, int len, int start)
 {
 	int	i;
 	int j;
 
-	i = 0;
-	j = 1;
+	i = start;
+	j = start + 1;
 	while (j < len)
 	{
-		if (stack[i] >= stack[j])
+		if (stack->list[i] >= stack->list[j])
 			return (0);
 		j++;
 		i++;
 	}
 	return (1);
+}
+
+int	check_little(t_stack *stack, int len, int start)
+{
+	int	i;
+	int j;
+
+	i = start;
+	j = start + 1;
+	while (j < len)
+	{
+		if (stack->list[i] > stack->list[j])
+			i = j;
+		j++;
+	}
+	return (i);
+}
+
+int	check_seclittle(t_stack *stack, int len, int start)
+{
+	int	i;
+	int j;
+	int sec;
+
+	sec = start;
+	i = start;
+	j = start + 1;
+	while (j < len)
+	{
+		if (stack->list[i] > stack->list[j])
+		{
+			sec = i;
+			i = j;
+		}
+		j++;
+	}
+	return (sec);
+}
+
+int	check_big(t_stack *stack, int len, int start)
+{
+	int	i;
+	int j;
+
+	i = start;
+	j = start + 1;
+	while (j < len)
+	{
+		if (stack->list[i] <= stack->list[j])
+			i = j;
+		j++;
+	}
+	return (i);
 }

@@ -12,20 +12,55 @@
 
 #include "push_swap.h"
 
-// int	triplet(t_stack *list, int len)
-// {
-// 	if (!check_sort(list, 3))
-// 	{
-// 		if (!check_sort(list, 2))
-// 		{
-// 			reverse_rotate(list, len);
-// 			//swap(list);
-// 			return (1);
-// 		}
-// 		ft_printf("test\n");
-// 		swap(list);
-// 		rotate(list, len);
-// 		return (1);
-// 	}
-// 	return (1);
-// }
+int	triplet(t_stack *stack, int len, int count)
+{
+	int top;
+    int mid;
+    int bot;
+
+	top = stack->list[len - stack->len];
+	mid = stack->list[len - stack->len + 1];
+	bot = stack->list[len - stack->len + 2];
+	if (top > mid && mid < bot && bot > top)
+        count += swap(stack, len, 1);
+    else if (top > mid && mid > bot)
+    {
+        count += swap(stack, len, 1);
+        count += reverse_rotate(stack, len, 1);
+    }
+    else if (top > mid && mid < bot && bot < top)
+        count += rotate(stack, len, 1);
+    else if (top < mid && mid > bot && bot > top)
+    {
+        count += swap(stack, len, 1);
+        count += rotate(stack, len, 1);
+    }
+    else if (top < mid && mid > bot && bot < top)
+		count += reverse_rotate(stack, len, 1);
+	return (count);
+}
+
+	// if (!check_sort(stack, 3))
+	// {
+	// 	if (check_sort(stack, 2))
+	// 	{
+	// 		if (check_little(stack, 3) == 0)
+	// 		{
+	// 			count += rotate(stack, len, 1);
+	// 			count += swap(stack, len, 1);
+	// 		}
+	// 		count += reverse_rotate(stack, len, 1);
+	// 		return (count);
+	// 	}
+	// 	if (check_little(stack, 3) == 1)
+	// 	{
+	// 		if (check_big(stack, 3) == 0)
+	// 			count += rotate(stack, len, 1);
+	// 		else if (check_big(stack, 3) == 2)
+	// 			count += swap(stack, len, 1);
+	// 		return (count);
+	// 	}
+	// 	count += rotate(stack, len, 1);
+	// 	count += swap(stack, len, 1);
+	// 	return (count);
+	// }
