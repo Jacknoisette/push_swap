@@ -35,7 +35,7 @@ int	check_little(t_stack *stack, int len, int start)
 	int j;
 
 	i = start;
-	j = start + 1;
+	j = start;
 	while (j < len)
 	{
 		if (stack->list[i] > stack->list[j])
@@ -53,14 +53,16 @@ int	check_seclittle(t_stack *stack, int len, int start)
 
 	sec = start;
 	i = start;
-	j = start + 1;
+	j = start;
 	while (j < len)
 	{
 		if (stack->list[i] > stack->list[j])
-		{
-			sec = i;
 			i = j;
-		}
+		if ((stack->list[sec] > stack->list[j]) && (i != j)) 
+			sec = j;
+		if ((stack->list[sec] > stack->list[j]) && (i == j)
+			&& stack->list[sec] > stack->list[j - 1]) 
+			sec = i - 1;
 		j++;
 	}
 	return (sec);
@@ -81,3 +83,5 @@ int	check_big(t_stack *stack, int len, int start)
 	}
 	return (i);
 }
+		
+// ft_printf("i : %i, j : %i, sec : %i, sl[i] : %i. sl[j] : %i\n", i, j, sec, stack->list[i], stack->list[j]);

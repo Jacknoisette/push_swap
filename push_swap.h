@@ -32,12 +32,14 @@ int	rreverse_rotate(t_stack *stack_1, t_stack *stack_2, int maxlen);
 int	reverse_rotate(t_stack *stack, int maxlen, int print);
 int sswap(t_stack *stack_1, t_stack *stack_2, int maxlen);
 int swap(t_stack *stack, int maxlen, int print);
-int quintuplet(t_stack *stack_a, t_stack *b, int len, int count);
+int quintuplet(t_stack *stack_a, t_stack *stack_b, int len, int count);
 int	triplet(t_stack *stack, int len, int count);
 int	push_swap(int *stack, int len);
 int	check_sort(t_stack *stack, int len, int start);
 int	check_little(t_stack *stack, int len, int start);
 int	check_seclittle(t_stack *stack, int len, int start);
 int	check_big(t_stack *stack, int len, int start);
+
+void	printf_all(t_stack stack_a, t_stack stack_b, int len, int count);
 
 #endif

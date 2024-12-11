@@ -66,17 +66,19 @@ int main(int argc, char **argv)
 	int	*stack;
 	int	stackres;
 	int	i;
+	int len;
 	
-	stack = malloc((argc - 1) * sizeof(int));
+	len = argc;
+	stack = malloc((len) * sizeof(int));
 	if (stack == NULL)
 		return (ft_printf("Error\nStack Allocation"), 0);
-	stackres = stackcreation(stack, argc, (const char **)argv);
+	stackres = stackcreation(stack, len, (const char **)argv);
 	if (stackres == 1)
 		return (free(stack), 0);
-	push_swap(stack, argc - 1);
+	push_swap(stack, len - 1);
 	ft_printf("\n________\n");
 	i = 0;
-	while (i < argc - 1)
+	while (i < len - 1)
 		ft_printf("%i, ", stack[i++]);
 	ft_printf("\n");
 	return (free(stack), 1);

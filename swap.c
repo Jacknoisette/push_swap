@@ -29,6 +29,7 @@ int swap(t_stack *stack, int maxlen, int print)
 	return (1);
 }
 
+//swap 1 <-> 2
 int sswap(t_stack *stack_1, t_stack *stack_2, int maxlen)
 {
 	ft_printf("ss\n");

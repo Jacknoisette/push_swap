@@ -19,7 +19,7 @@ executable = push_swap
 LIBFT_DIR = Libft
 
 SRCS = main.c swap.c push.c reverse_rotate.c rotate.c analyst.c \
-	analyst_utils.c triplet.c
+	analyst_utils.c triplet.c quintuplet.c
 
 OBJS = $(SRCS:.c=.o)
 

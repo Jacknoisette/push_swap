@@ -35,6 +35,7 @@ int	reverse_rotate(t_stack *stack, int maxlen, int print)
 	return (1);
 }
 
+//rotate 1 -> 2
 int	rreverse_rotate(t_stack *stack_1, t_stack *stack_2, int maxlen)
 {
 	ft_printf("rrr\n");

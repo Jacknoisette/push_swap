@@ -14,28 +14,28 @@
 
 int	triplet(t_stack *stack, int len, int count)
 {
-	int top;
+	int dif;
     int mid;
-    int bot;
+    int end;
 
-	top = stack->list[len - stack->len];
+	dif = stack->list[len - stack->len];
 	mid = stack->list[len - stack->len + 1];
-	bot = stack->list[len - stack->len + 2];
-	if (top > mid && mid < bot && bot > top)
+	end = stack->list[len - stack->len + 2];
+	if (dif > mid && mid < end && end > dif)
         count += swap(stack, len, 1);
-    else if (top > mid && mid > bot)
+    else if (dif > mid && mid > end)
     {
         count += swap(stack, len, 1);
         count += reverse_rotate(stack, len, 1);
     }
-    else if (top > mid && mid < bot && bot < top)
+    else if (dif > mid && mid < end && end < dif)
         count += rotate(stack, len, 1);
-    else if (top < mid && mid > bot && bot > top)
+    else if (dif < mid && mid > end && end > dif)
     {
         count += swap(stack, len, 1);
         count += rotate(stack, len, 1);
     }
-    else if (top < mid && mid > bot && bot < top)
+    else if (dif < mid && mid > end && end < dif)
 		count += reverse_rotate(stack, len, 1);
 	return (count);
 }
