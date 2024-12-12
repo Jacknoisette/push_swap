@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdhallen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:34:16 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/11/18 16:34:17 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/12 10:52:56 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_stack
 	int		len;
 }	t_stack;
 
+int radix_sort(t_stack *stack_a, t_stack *stack_b, int len, int count);
 int	push(t_stack *stack_1, t_stack *stack_2, int maxlen);
 int	rrotate(t_stack *stack_1, t_stack *stack_2, int maxlen);
 int	rotate(t_stack *stack, int maxlen, int print);

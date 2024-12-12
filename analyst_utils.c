@@ -58,11 +58,14 @@ int	check_seclittle(t_stack *stack, int len, int start)
 	{
 		if (stack->list[i] > stack->list[j])
 			i = j;
-		if ((stack->list[sec] > stack->list[j]) && (i != j)) 
+		j++;
+	}
+	j = start;
+	while (j < len)
+	{
+		if ((stack->list[sec] > stack->list[j]) 
+			&& stack->list[j] > stack->list[i]) 
 			sec = j;
-		if ((stack->list[sec] > stack->list[j]) && (i == j)
-			&& stack->list[sec] > stack->list[j - 1]) 
-			sec = i - 1;
 		j++;
 	}
 	return (sec);
@@ -72,12 +75,20 @@ int	check_big(t_stack *stack, int len, int start)
 {
 	int	i;
 	int j;
+	int temp;
+	int temp2;
 
 	i = start;
 	j = start + 1;
 	while (j < len)
 	{
-		if (stack->list[i] <= stack->list[j])
+		temp = stack->list[i];
+		temp2 = stack->list[j];
+		if (temp < 0)
+			temp *= -1;
+		if (temp2 < 0)
+			temp2 *= -1;
+		if (temp < temp2)
 			i = j;
 		j++;
 	}

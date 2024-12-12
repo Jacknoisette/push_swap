@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jdhallen <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/21 15:17:46 by jdhallen          #+#    #+#              #
-#    Updated: 2024/10/21 15:41:21 by jdhallen         ###   ########.fr        #
+#    Updated: 2024/12/12 11:07:52 by jdhallen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ executable = push_swap
 LIBFT_DIR = Libft
 
 SRCS = main.c swap.c push.c reverse_rotate.c rotate.c analyst.c \
-	analyst_utils.c triplet.c quintuplet.c
+	analyst_utils.c triplet.c quintuplet.c radix.c \
 
 OBJS = $(SRCS:.c=.o)
 
