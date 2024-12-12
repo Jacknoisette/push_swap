@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdhallen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:51:27 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/11/18 16:51:29 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:00:24 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,19 @@ int	stackcreation(int *stack, const int argc, const char **argv)
 		while(argv[i][j] != '\0')
 		{
 			if (ft_isdigit(argv[i][j]) == 0 && (j == 0 && argv[i][0] != '-'))
-				return (ft_printf("Error\nWrong param type"), 1);
+				return (ft_printf("Error\n"), 1);
 			j++;
 		}
 		if ((j > 10 && argv[i][0] != '-') || (j > 11 && argv[i][0] == '-'))
-			return (ft_printf("Error\nNumber to big"), 1);
+			return (ft_printf("Error\n"), 1);
 		numb = ft_atol(argv[i]);
 		if (numb > INT_MAX || numb < INT_MIN)
-			return (ft_printf("Error\nNumber to big"), 1);
+			return (ft_printf("Error\n"), 1);
 		stack[i - 1] = (int)numb;
  		i++;
 	}
 	if (check_double(stack, argc) == 1)
-		return (ft_printf("Error\nSame value\n"), 1);
+		return (ft_printf("Error\n"), 1);
 	return (stack[i - 1] = '\0', 0);
 }
 
@@ -71,7 +71,7 @@ int main(int argc, char **argv)
 	len = argc;
 	stack = malloc((len) * sizeof(int));
 	if (stack == NULL)
-		return (ft_printf("Error\nStack Allocation"), 0);
+		return (ft_printf("Error\n"), 0);
 	stackres = stackcreation(stack, len, (const char **)argv);
 	if (stackres == 1)
 		return (free(stack), 0);

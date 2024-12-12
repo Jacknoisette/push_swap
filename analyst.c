@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:52:06 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/12 11:43:34 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:52:35 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	push_swap(int *stack, int len)
 	stack_b.len = 0;
 	ft_printf("________ORIGIN________\n");
 	printf_all(stack_a, stack_b, len, count);
-	ft_printf("_____________________\n\n");
+	ft_printf("______________________\n\n");
 	// count += push(&stack_b, &stack_a, len);
 	// count += push(&stack_b, &stack_a, len);
 	// count += triplet(&stack_a, len, 0);
