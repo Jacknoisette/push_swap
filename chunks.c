@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:10:28 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/16 12:14:36 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:31:25 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ int	chunk_sort(t_stack *stack_a, t_stack *stack_b, int len, int count)
 		return (free(temp_chunk.list), -1);
 	tempchunk_sort(&temp_chunk, len);
 	error = 0;
+	if (temp_chunk.len <= 10)
+		chunks_count = 2;
 	if (temp_chunk.len <= 50)
 		chunks_count = 3;
 	else if (temp_chunk.len <= 100)

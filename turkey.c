@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 10:24:46 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/16 15:47:24 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:31:59 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,12 @@ int	found_chunk(t_stack *stack_a, t_stack *stack_b, t_chunk *chunks, int i)
 			chunks->found ++;
 		}
 		else
-			count += rotate(stack_a, chunks->maxlen, 1);
+		{
+			if (chunks->rot == 'r')
+				count += rotate(stack_a, chunks->maxlen, 1);
+			else
+				count += reverse_rotate(stack_a, chunks->maxlen, 1);
+		}
 		j++;
 	}
 	return (count);
@@ -148,11 +153,14 @@ int turkey_sort(t_stack *stack_a, t_stack *stack_b, t_chunk *chunks, int count)
 	i = 0;
 	while (i < chunks->chunks_count)
 	{
+		if (shortcut_rot(stack_a, chunks, i) <= stack_a->len / 2)
+			chunks->rot = 'v';
+		else
+			chunks->rot = 'r';
 		count += found_chunk(stack_a, stack_b, chunks, i);
 		i++;
 	}
-	i = 0;
 	while (stack_b->len > 0)
-		count += push(stack_a, stack_b, chunks->maxlen);
+			count += push(stack_a, stack_b, chunks->maxlen);
 	return (count);
 }
