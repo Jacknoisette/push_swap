@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   analyst_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdhallen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:52:14 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/11/18 16:52:17 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:02:52 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,23 @@ int	check_sort(t_stack *stack, int len, int start)
 	while (j < len)
 	{
 		if (stack->list[i] >= stack->list[j])
+			return (0);
+		j++;
+		i++;
+	}
+	return (1);
+}
+
+int	check_revsort(t_stack *stack, int len, int start)
+{
+	int	i;
+	int j;
+
+	i = start;
+	j = start + 1;
+	while (j < len)
+	{
+		if (stack->list[i] <= stack->list[j])
 			return (0);
 		j++;
 		i++;

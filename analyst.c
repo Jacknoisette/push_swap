@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:52:06 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/12 11:52:35 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:37:24 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,22 @@ int	push_swap(int *stack, int len)
 	ft_printf("________ORIGIN________\n");
 	printf_all(stack_a, stack_b, len, count);
 	ft_printf("______________________\n\n");
-	// count += push(&stack_b, &stack_a, len);
-	// count += push(&stack_b, &stack_a, len);
-	// count += triplet(&stack_a, len, 0);
-	// count += quintuplet(&stack_a, &stack_b, len, 0);
-	count += radix_sort(&stack_a, &stack_b, len, count);
-	// for (int i = 500; i > 0; i--)
-	// 	ft_printf("%i ", i);
+	if (check_sort(&stack_a, len, 0))
+		return (count);
+	if (stack_a.len <= 5 && stack_a.len > 3)
+		count += quintuplet(&stack_a, &stack_b, len, 0);
+	else if (stack_a.len == 3)
+		count += triplet(&stack_a, len, 0);
+	else if (stack_a.len == 2)
+		count += swap(&stack_a, len, 1);
+	else
+		count += chunk_sort(&stack_a, &stack_b, len, count);
+	if (count == -1)
+		return (-1);
 	printf_all(stack_a, stack_b, len, count);
 	free(stack_b.list);
 	return (count);
 }
 
+//setopt shwordsplit
+//unsetopt shwordsplit
