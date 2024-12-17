@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdhallen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:51:45 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/11/18 16:51:46 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:08:47 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	rotate(t_stack *stack, int maxlen, int print)
 {
 	int	i;
-	int temp;
+	int	temp;
 	int	dif;
 
 	if (print)
@@ -43,13 +43,3 @@ int	rrotate(t_stack *stack_1, t_stack *stack_2, int maxlen)
 	rotate(stack_2, maxlen, 0);
 	return (1);
 }
-
-
-
-
-
-// void	rrotate(t_stack *stack_1, t_stack *stack_2, int maxlen)
-// {
-// 	int	i;
-
-// }

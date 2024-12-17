@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:52:06 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/16 12:37:24 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:34:22 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	printf_all(t_stack stack_a, t_stack stack_b, int len, int count)
 
 int	push_swap(int *stack, int len)
 {
-	t_stack stack_a;
-	t_stack stack_b;
-	int	count;
-	
+	t_stack	stack_a;
+	t_stack	stack_b;
+	int		count;
+
 	count = 0;
 	stack_a.letter = 'a';
 	stack_b.letter = 'b';
@@ -49,7 +49,7 @@ int	push_swap(int *stack, int len)
 	ft_printf("______________________\n\n");
 	if (check_sort(&stack_a, len, 0))
 		return (count);
-	if (stack_a.len <= 5 && stack_a.len > 3)
+	if (stack_a.len == 5 || stack_a.len == 4)
 		count += quintuplet(&stack_a, &stack_b, len, 0);
 	else if (stack_a.len == 3)
 		count += triplet(&stack_a, len, 0);
@@ -60,6 +60,8 @@ int	push_swap(int *stack, int len)
 	if (count == -1)
 		return (-1);
 	printf_all(stack_a, stack_b, len, count);
+	if (check_sort(&stack_a, len, 0))
+		ft_printf("\nSTACK IS SORTED !!!\n");
 	free(stack_b.list);
 	return (count);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push,c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdhallen <marvin@42,fr>                    +#+  +:+       +#+        */
+/*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:51:35 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/11/18 16:51:38 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:08:54 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	push(t_stack *stack_1, t_stack *stack_2, int maxlen)
 {
 	int	dif1;
 	int	dif2;
-	
+
 	ft_printf("p%c\n", stack_1->letter);
 	if (stack_2->len <= 0)
 		return (1);

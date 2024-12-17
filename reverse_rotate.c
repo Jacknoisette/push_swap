@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdhallen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:51:50 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/11/18 16:51:52 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:20:46 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	reverse_rotate(t_stack *stack, int maxlen, int print)
 {
 	int	i;
-	int temp;
+	int	temp;
 	int	dif;
 
 	if (print)

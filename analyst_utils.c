@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:52:14 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/16 11:02:52 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:33:54 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_sort(t_stack *stack, int len, int start)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = start;
 	j = start + 1;
@@ -32,7 +32,7 @@ int	check_sort(t_stack *stack, int len, int start)
 int	check_revsort(t_stack *stack, int len, int start)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = start;
 	j = start + 1;
@@ -49,7 +49,7 @@ int	check_revsort(t_stack *stack, int len, int start)
 int	check_little(t_stack *stack, int len, int start)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = start;
 	j = start;
@@ -65,8 +65,8 @@ int	check_little(t_stack *stack, int len, int start)
 int	check_seclittle(t_stack *stack, int len, int start)
 {
 	int	i;
-	int j;
-	int sec;
+	int	j;
+	int	sec;
 
 	sec = start;
 	i = start;
@@ -80,8 +80,8 @@ int	check_seclittle(t_stack *stack, int len, int start)
 	j = start;
 	while (j < len)
 	{
-		if ((stack->list[sec] > stack->list[j]) 
-			&& stack->list[j] > stack->list[i]) 
+		if ((stack->list[sec] > stack->list[j])
+			&& stack->list[j] > stack->list[i])
 			sec = j;
 		j++;
 	}
@@ -91,9 +91,9 @@ int	check_seclittle(t_stack *stack, int len, int start)
 int	check_big(t_stack *stack, int len, int start)
 {
 	int	i;
-	int j;
-	int temp;
-	int temp2;
+	int	j;
+	int	temp;
+	int	temp2;
 
 	i = start;
 	j = start + 1;
@@ -111,5 +111,3 @@ int	check_big(t_stack *stack, int len, int start)
 	}
 	return (i);
 }
-		
-// ft_printf("i : %i, j : %i, sec : %i, sl[i] : %i. sl[j] : %i\n", i, j, sec, stack->list[i], stack->list[j]);

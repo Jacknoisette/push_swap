@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 10:24:46 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/16 16:31:59 by jdhallen         ###   ########.fr       */
+/*   Created: 2024/12/17 12:12:25 by jdhallen          #+#    #+#             */
+/*   Updated: 2024/12/17 12:18:42 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	posrotation(t_stack *stack_a, t_stack *stack_b, t_pos *pos, int count)
 {
 	int	difa;
-	int difb;
+	int	difb;
 
 	difa = pos->maxlen - stack_a->len;
 	difb = pos->maxlen - stack_b->len;
@@ -34,9 +34,9 @@ int	posrotation(t_stack *stack_a, t_stack *stack_b, t_pos *pos, int count)
 			pos->rot = 'v';
 		}
 		if (pos->pos >= stack_b->len)
-   			pos->pos = difb;
+			pos->pos = difb;
 		if (pos->pos < difb)
-			pos->pos = stack_b->len;
+			pos->pos = difb + 1;
 		pos->numb++;
 	}
 	return (count);
@@ -45,21 +45,22 @@ int	posrotation(t_stack *stack_a, t_stack *stack_b, t_pos *pos, int count)
 int	checkpos(t_stack *stack_a, t_stack *stack_b, int len, int count)
 {
 	t_pos	pos;
-	int	difa;
-	int difb;
+	int		difa;
+	int		difb;
 
 	difa = len - stack_a->len;
 	difb = len - stack_b->len;
-	pos.pos = difb + 1;
+	pos.pos = difb - 1;
 	pos.maxlen = len;
-	while (pos.pos < stack_b->len && !(stack_a->list[difa] < 
-		stack_b->list[pos.pos + 1] && stack_a->list[difa] >
-		stack_b->list[pos.pos]))
+	while (pos.pos < stack_b->len
+		&& !(stack_a->list[difa] < stack_b->list[pos.pos + 1]
+			&& stack_a->list[difa] > stack_b->list[pos.pos]))
 		pos.pos++;
 	ft_printf("pos : %i\n", pos.pos - difb);
 	pos.numb = 0;
 	count += posrotation(stack_a, stack_b, &pos, 0);
 	count += push(stack_b, stack_a, len);
+	difb = len - stack_b->len;
 	while (pos.numb > 0)
 	{
 		if (pos.rot == 'r')
@@ -74,8 +75,8 @@ int	checkpos(t_stack *stack_a, t_stack *stack_b, int len, int count)
 int	sort_stack_b(t_stack *stack_a, t_stack *stack_b, int len, int count)
 {
 	int	difa;
-	int difb;
-	int big;
+	int	difb;
+	int	big;
 	int	small;
 
 	difa = len - stack_a->len;
@@ -83,7 +84,7 @@ int	sort_stack_b(t_stack *stack_a, t_stack *stack_b, int len, int count)
 	if (stack_b->len == 0)
 		return (count += push(stack_b, stack_a, len), count);
 	if (stack_b->len == 1 && stack_b->list[difb] > stack_a->list[difa])
-		return (count += push(stack_b, stack_a, len), 
+		return (count += push(stack_b, stack_a, len),
 			count += rotate(stack_b, len, 1), count);
 	big = difb;
 	while (stack_a->list[difa] > stack_b->list[big])
@@ -94,10 +95,11 @@ int	sort_stack_b(t_stack *stack_a, t_stack *stack_b, int len, int count)
 	if (small == difb)
 		return (count += push(stack_b, stack_a, len), count);
 	if (big == difb && small == len)
-	{
 		return (count += push(stack_b, stack_a, len),
 			count += rotate(stack_b, len, 1), count);
-	}
+	if (big == difb && small == difb + 1)
+		return (count += push(stack_b, stack_a, len),
+			count += swap(stack_b, len, 1), count);
 	count += checkpos(stack_a, stack_b, len, 0);
 	return (count);
 }
@@ -107,7 +109,7 @@ int	found_chunk(t_stack *stack_a, t_stack *stack_b, t_chunk *chunks, int i)
 	int	j;
 	int	k;
 	int	dif;
-	int count;
+	int	count;
 	int	stack_len;
 
 	count = 0;
@@ -118,8 +120,8 @@ int	found_chunk(t_stack *stack_a, t_stack *stack_b, t_chunk *chunks, int i)
 	{
 		dif = chunks->maxlen - stack_a->len;
 		k = 0;
-		while (k < chunks->chunks[i].len && 
-			stack_a->list[dif] !=  chunks->chunks[i].list[k])
+		while (k < chunks->chunks[i].len
+			&& stack_a->list[dif] != chunks->chunks[i].list[k])
 		{
 			if (stack_a->list[dif] == chunks->chunks[i].list[k])
 				break ;
@@ -146,10 +148,11 @@ int	found_chunk(t_stack *stack_a, t_stack *stack_b, t_chunk *chunks, int i)
 	return (count);
 }
 
-int turkey_sort(t_stack *stack_a, t_stack *stack_b, t_chunk *chunks, int count)
+int	turkey_sort(t_stack *stack_a, t_stack *stack_b, t_chunk *chunks, int count)
 {
-	int i;
+	int	i;
 
+	ft_printf("TURKEY\n");
 	i = 0;
 	while (i < chunks->chunks_count)
 	{
@@ -161,6 +164,6 @@ int turkey_sort(t_stack *stack_a, t_stack *stack_b, t_chunk *chunks, int count)
 		i++;
 	}
 	while (stack_b->len > 0)
-			count += push(stack_a, stack_b, chunks->maxlen);
+		count += push(stack_a, stack_b, chunks->maxlen);
 	return (count);
 }

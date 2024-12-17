@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 16:51:27 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/13 09:17:28 by jdhallen         ###   ########.fr       */
+/*   Created: 2024/12/17 12:27:16 by jdhallen          #+#    #+#             */
+/*   Updated: 2024/12/17 12:28:40 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int check_double(int *stack, const int max)
+int	check_double(int *stack, const int max)
 {
 	int	i;
 	int	j;
@@ -28,21 +28,21 @@ int check_double(int *stack, const int max)
 			j++;
 		}
 		i++;
-	}	
+	}
 	return (0);
 }
 
 int	stackcreation(int *stack, const int argc, const char **argv)
 {
-	int	i;
-	int	j;
-	long numb;
+	long	numb;
+	int		i;
+	int		j;
 
 	i = 1;
 	while (i < argc)
 	{
 		j = 0;
-		while(argv[i][j] != '\0')
+		while (argv[i][j] != '\0')
 		{
 			if (ft_isdigit(argv[i][j]) == 0 && (j == 0 && argv[i][0] != '-'))
 				return (ft_printf("Error\n"), 1);
@@ -54,20 +54,20 @@ int	stackcreation(int *stack, const int argc, const char **argv)
 		if (numb > INT_MAX || numb < INT_MIN)
 			return (ft_printf("Error\n"), 1);
 		stack[i - 1] = (int)numb;
- 		i++;
+		i++;
 	}
 	if (check_double(stack, argc) == 1)
 		return (ft_printf("Error\n"), 1);
 	return (stack[i - 1] = '\0', 0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int	*stack;
 	int	stackres;
 	int	i;
-	int len;
-	
+	int	len;
+
 	len = argc;
 	stack = malloc((len) * sizeof(int));
 	if (stack == NULL)
