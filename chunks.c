@@ -6,26 +6,13 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:26 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/17 12:31:55 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/18 13:42:12 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_all(t_stack **chunks)
-{
-	int	i;
-
-	i = 0;
-	while (chunks[i]->list != NULL)
-	{
-		free(chunks[i]->list);
-		i++;
-	}
-	free(chunks);
-}
-
-t_stack	tempchunk_alloc(t_stack *stack, int len, int start)
+t_stack	tempchunk_alloc(t_stack *stack, int len)
 {
 	t_stack	temp_chunk;
 	int		i;
@@ -36,45 +23,25 @@ t_stack	tempchunk_alloc(t_stack *stack, int len, int start)
 		return (ft_printf("Error\n"), temp_chunk);
 	temp_chunk.len = len;
 	temp_chunk.letter = 't';
-	while (i < len && stack->list[start] != '\0')
+	while (i < len)
 	{
-		temp_chunk.list[i] = stack->list[start];
+		temp_chunk.list[i] = stack->list[i];
 		i++;
-		start++;
 	}
 	temp_chunk.list[i] = '\0';
 	return (temp_chunk);
 }
 
-t_chunk	chunks_alloc(t_stack *temp_chunk, int *error, int chunks_count)
+t_chunk	chunks_alloc(t_stack *temp_chunk)
 {
 	t_chunk	chunks;
 	t_stack	schunk;
-	int		i;
-	int		j;
 
-	chunks.len = temp_chunk->len / chunks_count;
-	chunks.chunks = malloc(chunks.len * sizeof(t_stack));
-	if (chunks.chunks == NULL)
+	chunks.len = temp_chunk->len;
+	schunk = tempchunk_alloc(temp_chunk, chunks.len);
+	chunks.chunks = schunk;
+	if (schunk.list == NULL)
 		return (ft_printf("Error\n"), chunks);
-	i = 0;
-	j = 0;
-	while (i < chunks.len)
-	{
-		if (i == 0 && temp_chunk->len % chunks_count != 0)
-		{
-			schunk = tempchunk_alloc(temp_chunk,
-					chunks.len + temp_chunk->len % chunks_count, j);
-			j += temp_chunk->len % chunks_count;
-		}
-		else
-			schunk = tempchunk_alloc(temp_chunk, chunks.len, j);
-		chunks.chunks[i] = schunk;
-		if (schunk.list == NULL)
-			return (ft_printf("Error\n"), *error = i, chunks);
-		i++;
-		j += chunks.len;
-	}
 	return (chunks);
 }
 
@@ -107,14 +74,12 @@ int	chunk_sort(t_stack *stack_a, t_stack *stack_b, int len, int count)
 {
 	t_stack	temp_chunk;
 	t_chunk	chunks;
-	int		error;
 	int		chunks_count;
 
-	temp_chunk = tempchunk_alloc(stack_a, stack_a->len, 0);
+	temp_chunk = tempchunk_alloc(stack_a, stack_a->len);
 	if (temp_chunk.list == NULL)
 		return (free(temp_chunk.list), -1);
 	tempchunk_sort(&temp_chunk, len);
-	error = 0;
 	// if (temp_chunk.len <= 10)
 	// 	chunks_count = 1;
 	// if (temp_chunk.len <= 50)
@@ -128,14 +93,11 @@ int	chunk_sort(t_stack *stack_a, t_stack *stack_b, int len, int count)
 	// else
 	// 	chunks_count = temp_chunk.len / 30;
 	chunks_count = 1;
-	ft_printf("temp_chunklen, %i\n", temp_chunk.len);
-	chunks = chunks_alloc(&temp_chunk, &error, chunks_count);
-	if (chunks.chunks == NULL)
-		return (-1);
-	if (chunks.chunks[error].list == NULL)
-		return (free_all(&chunks.chunks), -1);
+	// ft_printf("temp_chunk, %i\n", temp_chunk);
+	chunks = chunks_alloc(&temp_chunk);
+	if (chunks.chunks.list == NULL)
+		return (free(chunks.chunks.list), -1);
 	chunks.maxlen = temp_chunk.len;
-	chunks.chunks_count = chunks_count;
 	free(temp_chunk.list);
 	count += turkey_sort(stack_a, stack_b, &chunks, 0);
 	return (count);
