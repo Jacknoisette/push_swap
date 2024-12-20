@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:34:16 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/19 18:25:03 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:21:55 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ typedef struct s_v
 	int	i;
 	int j;
 	int	k;
+	int n;
 	int	difa;
 	int	difb;
+	int	rota;
+	int	rotb;
 }	t_v;
 
 
@@ -32,6 +35,8 @@ typedef struct s_check
 {
 	int	rota;
 	int	rotb;
+	int	dira;
+	int	dirb;
 	int	index;
 	int	value;
 	int	big;

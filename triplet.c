@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:07:08 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/17 12:19:29 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:34:38 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	triplet(t_stack *stack, int len, int count)
 	int	mid;
 	int	end;
 
-	ft_printf("TRIPLET\n");
+	// ft_printf("TRIPLET\n");
 	dif = stack->list[len - stack->len];
 	mid = stack->list[len - stack->len + 1];
 	end = stack->list[len - stack->len + 2];

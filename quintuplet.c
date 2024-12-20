@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:23:25 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/17 12:02:26 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:43:05 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int quintuplet(t_stack *stack_a, t_stack *stack_b, int len, int count)
 {
 	int dif;
 
-	ft_printf("QUINTUPLET\n");
+	// ft_printf("QUINTUPLET\n");
 	dif = len - stack_a->len;
 	if (check_sort(stack_a, len, dif))
 		return (count);

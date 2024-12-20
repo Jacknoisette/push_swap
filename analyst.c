@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:52:06 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/17 12:34:22 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:34:24 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ int	push_swap(int *stack, int len)
 	stack_a.letter = 'a';
 	stack_b.letter = 'b';
 	stack_a.list = stack;
-	ft_printf("len : %i\n", len);
+	// ft_printf("len : %i\n", len);
 	stack_b.list = malloc((len + 1) * sizeof(int));
 	if (stack_b.list == NULL)
 		return (0);
 	stack_a.len = len;
 	stack_b.len = 0;
-	ft_printf("________ORIGIN________\n");
-	printf_all(stack_a, stack_b, len, count);
-	ft_printf("______________________\n\n");
+	// ft_printf("________ORIGIN________\n");
+	// printf_all(stack_a, stack_b, len, count);
+	// ft_printf("______________________\n\n");
 	if (check_sort(&stack_a, len, 0))
 		return (count);
 	if (stack_a.len == 5 || stack_a.len == 4)
@@ -59,9 +59,9 @@ int	push_swap(int *stack, int len)
 		count += chunk_sort(&stack_a, &stack_b, len, count);
 	if (count == -1)
 		return (-1);
-	printf_all(stack_a, stack_b, len, count);
-	if (check_sort(&stack_a, len, 0))
-		ft_printf("\nSTACK IS SORTED !!!\n");
+	// printf_all(stack_a, stack_b, len, count);
+	// if (check_sort(&stack_a, len, 0))
+	// 	ft_printf("\nSTACK IS SORTED !!!\n");
 	free(stack_b.list);
 	return (count);
 }

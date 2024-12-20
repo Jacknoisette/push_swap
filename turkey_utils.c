@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 09:29:16 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/19 18:18:05 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:12:29 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,66 +153,83 @@
 // 	return (count);
 // }
 
+int check_neighbors(t_stack *stack_a, t_v *v, t_stack chunks, int num)
+{
+	v->j = v->i + 1;
+	if (stack_a->list[v->k] > num)
+	{
+		while (v->j < chunks.len)
+		{
+			if (chunks.list[v->j] == stack_a->list[v->k])
+				return (1);
+			v->j++;
+		}
+	}
+	return (0);
+}
+
 int	find_neighbors(t_stack *stack_a, t_stack *stack_b, t_info *data, t_stack chunks)
 {
-	int	i;
-	int	j;
+	t_v v;
+	int smallest_bigger;
+    int valid_found;
 
-	i = 0;
-	// ft_printf("big : %i\nsmall : %i\n", data->big - (chunks.len - stack_a->len), data->small - (chunks.len - stack_a->len));
-	// ft_printf("chunks.len %i\n", chunks.len);
-	while (i < chunks.len && chunks.list[i] < stack_b->list[data->actual])
-		i++;
-	j = i + 1;
-	// ft_printf("FIND_BIG for %i\n", stack_b->list[data->actual]);
-	while (data->big - (chunks.len - stack_a->len) < stack_a->len)
+	v.difa = chunks.len - stack_a->len;
+	v.i = 0;
+	while (v.i < chunks.len && chunks.list[v.i] 
+		< stack_b->list[data->actual])
+		v.i++;
+	if (v.i >= chunks.len)
+        return (-1);
+	smallest_bigger = INT_MAX;
+	valid_found = 0;
+	v.k = v.difa;
+	while (v.k - v.difa < stack_a->len)
 	{
-		// ft_printf("COND 1 : j < chunks.len : %i because j = %i and chunks.len = %i\n", j < chunks.len, j, chunks.len);
-		// ft_printf("COND 2 :data->big < stack_a->len : %i because big = %i and stacklen = %i\n", data->big < stack_a->len, data->big, stack_a->len);
-		// ft_printf("COND 3 :chunks.list[j] < stack_a->list[data->big] : %i because chunklistj = %i && stack list = %i\n", chunks.list[j] < stack_a->list[data->big], chunks.list[j], stack_a->list[data->big]);
-		// ft_printf("big %i, stacklen %i, j %i\n\n", data->big  - (chunks.len - stack_a->len), stack_a->len, j);
-		// data->big = chunks.len - stack_a->len;
-		j = i + 1;
-		while (j < chunks.len)
+		// ft_printf("test %i - %i\n", stack_a->list[v.k], smallest_bigger);
+		if (check_neighbors(stack_a, &v, chunks, stack_b->list[data->actual]))
 		{
-		// 	ft_printf("big : chunks.list[j] : %i ||", chunks.list[j]);
-		// 	ft_printf(" stack_b->list[data->big] : %i\n", stack_a->list[data->big]);
-			// ft_printf("j : %i, big : %i\n", chunks.list[j],  stack_a->list[data->big]);
-			if (chunks.list[j] == stack_a->list[data->big])
-				break ;
-			j++;
+			// ft_printf("test %i\n", stack_a->list[v.k]);
+			valid_found = 1;
+			if (stack_a->list[v.k] < smallest_bigger)
+			{
+				smallest_bigger = stack_a->list[v.k];
+				 data->big = v.k;
+			}
 		}
-		if (chunks.list[j] == stack_a->list[data->big])
-				break ;
-		data->big++;
-		// ft_printf("big : %i -> %i\n", data->big - (chunks.len - stack_a->len), stack_a->len);
+		v.k++;
 	}
+	if (!valid_found)
+    {
+        data->big = v.difa;
+        return (-1);
+    }
+	return (0);
+}
 	// ft_printf("________\n\n");
 	// ft_printf("big : chunks.list[j] : %i ||", chunks.list[j]);
 	// ft_printf(" stack_b->list[data->big] : %i\n", stack_b->list[data->small]);
-	j = i - 1;
+	// j = i - 1;
 	// ft_printf("chunks.list[j] : %i\n", chunks.list[j]);
-	while (j)
-	{
-		while (j >= 0 && data->small - (chunks.len - stack_a->len) 
-			< stack_a->len && chunks.list[j] > stack_a->list[data->small])
-		{
-			// ft_printf("small : chunks.list[j] : %i ||", chunks.list[j]);
-			// ft_printf(" stack_b->list[data->small] : %i\n", stack_b->list[data->small]);
-			data->small++;
-		}
-		if (chunks.list[j] == stack_a->list[data->small])
-			break ;
-		if (j < 0)
-		{
-			data->small = chunks.len - stack_a->len;
-			// ft_printf("%i < 0\n", j);
-			break;
-		}
-		j--;
-	}
+	// while (j)
+	// {
+	// 	while (j >= 0 && data->small - (chunks.len - stack_a->len) 
+	// 		< stack_a->len && chunks.list[j] > stack_a->list[data->small])
+	// 	{
+	// 		// ft_printf("small : chunks.list[j] : %i ||", chunks.list[j]);
+	// 		// ft_printf(" stack_b->list[data->small] : %i\n", stack_b->list[data->small]);
+	// 		data->small++;
+	// 	}
+	// 	if (chunks.list[j] == stack_a->list[data->small])
+	// 		break ;
+	// 	if (j < 0)
+	// 	{
+	// 		data->small = chunks.len - stack_a->len;
+	// 		// ft_printf("%i < 0\n", j);
+	// 		break;
+	// 	}
+	// 	j--;
+	// }
 	// ft_printf("small : chunks.list[j] : %i ||", chunks.list[j]);
 	// ft_printf(" stack_b->list[data->small] : %i\n", stack_b->list[data->small]);
 	// ft_printf("big : %i\nsmall : %i\n", data->big - (chunks.len - stack_a->len), data->small - (chunks.len - stack_a->len));
-	return (0);
-}
