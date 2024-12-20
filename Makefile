@@ -6,7 +6,7 @@
 #    By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/21 15:17:46 by jdhallen          #+#    #+#              #
-#    Updated: 2024/12/20 15:33:42 by jdhallen         ###   ########.fr        #
+#    Updated: 2024/12/20 17:23:37 by jdhallen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = Libft
 
 SRCS = main.c swap.c push.c reverse_rotate.c rotate.c analyst.c \
 	analyst_utils.c triplet.c quintuplet.c chunks.c\
-	turkey.c turkey_utils.c\
+	turkey.c turkey_utils.c neighbors.c ft_atol.c\
 
 OBJS = $(SRCS:.c=.o)
 

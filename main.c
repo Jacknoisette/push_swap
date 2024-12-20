@@ -6,7 +6,7 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:27:16 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/20 15:52:07 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:06:35 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_double(int *stack, const int max)
 		while (j < max - 1)
 		{
 			if (stack[i] == stack[j] && j != i)
-				return (ft_printf("%i\n", stack[j]), 1);
+				return (1);
 			j++;
 		}
 		i++;
@@ -40,19 +40,16 @@ int	stackcreation(int *stack, const int argc, const char **argv)
 	v.i = 1;
 	while (v.i < argc)
 	{
-		v.j = 0;
-		if (argv[v.i][v.j] == '-')
-			v.j++;
-		while (argv[v.i][v.j] != '\0' && v.j++)
-			if (!ft_isdigit(argv[v.i][v.j]))
-				return (ft_printf("Error\n"), 1);
+		v.j = ft_strlen(argv[v.i]);
 		v.k = 0;
-		while (argv[v.i][v.k] == '0' && v.k++)
-			v.j--;
-		if ((v.j > 10 && argv[v.i][0] != '-') || (v.j > 11 && argv[v.i][0] == '-'))
+		while (argv[v.i][v.k] == '-' || argv[v.i][v.k] == '+'
+			|| argv[v.i][v.k] == '0')
+			v.k++;
+		v.j -= v.k;
+		if (v.j > 10 && argv[v.i][0] != '-')
 			return (ft_printf("Error\n"), 1);
-		numb = ft_atol(argv[v.i]);
-		if (numb > INT_MAX || numb < INT_MIN)
+		numb = ft_atol(argv[v.i], &v.n, 0, 0);
+		if (numb > INT_MAX || numb < INT_MIN || v.n == 1)
 			return (ft_printf("Error\n"), 1);
 		stack[v.i++ - 1] = (int)numb;
 	}
@@ -65,7 +62,6 @@ int	main(int argc, char **argv)
 {
 	int	*stack;
 	int	stackres;
-	// int	i;
 	int	len;
 
 	len = argc;
@@ -75,11 +71,12 @@ int	main(int argc, char **argv)
 	stackres = stackcreation(stack, len, (const char **)argv);
 	if (stackres == 1)
 		return (free(stack), 0);
-	push_swap(stack, len - 1);
-	// ft_printf("\n________\n");
+	push_swap(stack, len - 1, 0);
+	return (free(stack), 1);
+}
+
+	// int	i;
 	// i = 0;
 	// while (i < len - 1)
 	// 	ft_printf("%i, ", stack[i++]);
 	// ft_printf("\n");
-	return (free(stack), 1);
-}

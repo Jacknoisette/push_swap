@@ -6,15 +6,15 @@
 /*   By: jdhallen <jdhallen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:26 by jdhallen          #+#    #+#             */
-/*   Updated: 2024/12/19 12:51:48 by jdhallen         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:04:50 by jdhallen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int median(t_stack *temp_chunk)
+int	median(t_stack *temp_chunk)
 {
-	int median;
+	int	median;
 
 	median = temp_chunk->list[temp_chunk->len / 2];
 	return (median);
